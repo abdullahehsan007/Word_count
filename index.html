@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word & Character Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        textarea {
+            width: 80%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .counter {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Live Word & Character Counter</h2>
+    <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+    <div class="counter">
+        Words: <span id="wordCount">0</span> | Characters: <span id="charCount">0</span>
+    </div>
+
+    <script>
+        function countWordsAndCharacters() {
+            let text = document.getElementById("textInput").value;
+            let words = text.trim().split(/\s+/);
+            let numWords = text.trim() === "" ? 0 : words.length;
+            let numChars = text.length;
+
+            document.getElementById("wordCount").innerText = numWords;
+            document.getElementById("charCount").innerText = numChars;
+        }
+
+        document.getElementById("textInput").addEventListener("input", countWordsAndCharacters);
+    </script>
+
+</body>
+</html>
