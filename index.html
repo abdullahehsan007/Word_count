@@ -3,46 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word & Character Counter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        textarea {
-            width: 80%;
-            height: 150px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .counter {
-            font-size: 18px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Simple Counter</title>
 </head>
 <body>
 
-    <h2>Live Word & Character Counter</h2>
-    <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
-    <div class="counter">
-        Words: <span id="wordCount">0</span> | Characters: <span id="charCount">0</span>
-    </div>
+    <h2>Type Your Text Below:</h2>
+    <textarea id="textInput" rows="5" cols="50"></textarea>
+    
+    <p>Words: <span id="wordCount">0</span></p>
+    <p>Characters: <span id="charCount">0</span></p>
+    <p>Vowels: <span id="vowelCount">0</span></p>
 
     <script>
-        function countWordsAndCharacters() {
+        function countText() {
             let text = document.getElementById("textInput").value;
-            let words = text.trim().split(/\s+/);
-            let numWords = text.trim() === "" ? 0 : words.length;
-            let numChars = text.length;
+            
+            let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+            let characters = text.length;
+            let vowels = (text.match(/[aeiouAEIOU]/g) || []).length;
 
-            document.getElementById("wordCount").innerText = numWords;
-            document.getElementById("charCount").innerText = numChars;
+            document.getElementById("wordCount").innerText = words;
+            document.getElementById("charCount").innerText = characters;
+            document.getElementById("vowelCount").innerText = vowels;
         }
 
-        document.getElementById("textInput").addEventListener("input", countWordsAndCharacters);
+        document.getElementById("textInput").addEventListener("input", countText);
     </script>
 
 </body>
