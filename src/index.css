@@ -2,9 +2,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-span,h1{
+
+body {
      font-family: "DM Serif Display", serif;
 }
-p{
+
+h4 {
      font-family: "Poppins", serif;
+}
+
+.background {
+     background-image: url(./Components/Images/mp2.avif);
+     background-size: cover;
+     background-position: center;
+     width: 100vw;
+     height: 100vh;
 }

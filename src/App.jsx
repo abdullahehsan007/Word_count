@@ -1,15 +1,16 @@
 import React from 'react'
-// import Background from './Components/Background'
-// import Counter from './Components/Counter'
 import Header from './Components/header'
-
+import Counter from './Components/Counter'
+import Footer from './Components/Footer'
 
 function App() {
   return (
     <>
-   {/* <Background/> */}
-   {/* <Counter/> */}
-  <Header/>
+      <div className='background'>
+        <Header />
+        <Counter />
+        <Footer />
+      </div>
     </>
   )
 }
