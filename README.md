@@ -1,8 +1,23 @@
-# React + Vite
+Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web app that analyzes text in real-time, counting words, characters, vowels, punctuation, and sentences dynamically.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Real-time text analysis
+
+Interactive and responsive UI
+
+Modern styling with animations
+
+Technologies Used
+
+React.js
+
+Tailwind CSS
+
+JavaScript
+
+License
+
+Florals License
