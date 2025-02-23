@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { ImCloudUpload } from "react-icons/im";
 import Mammoth from "mammoth";
-import { motion } from "framer-motion";
 
 const Counter = () => {
-  const [text, setText] = useState("");
-
+  const [text, setText] = useState('');
+  const [fileName] = useState('');
   const countWords = (str) => (str.trim() ? str.trim().split(/\s+/).length : 0);
   const countCharacters = (str) => str.length;
   const countPunctuation = (str) => (str.match(/[.,!?;:'"()-]/g) || []).length;
@@ -27,45 +27,29 @@ const Counter = () => {
   };
 
   return (
-    <motion.div 
-      className=" p-4 max-w-lg mx-auto bg-gray-200 border border-gray-400 rounded-lg shadow-lg"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h1 className="text-xl font-bold mb-4 text-center text-yellow-500">Word Counter & Text Analyzer</h1>
-      <motion.textarea
-        className="w-full p-3 border rounded shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all bg-[#E3F2FD] text-blue border-yellow-500 placeholder-gray-500"
-        rows="5"
-        placeholder="Enter Your Text Here"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        whileFocus={{ scale: 1.05 }}
-      />
-      <motion.input 
-        type="file" 
-        accept=".docx" 
-        onChange={handleFileUpload} 
-        className="mt-3 p-2 border rounded w-full cursor-pointer transition-all hover:bg-gray-300"
-        whileHover={{ scale: 1.02 }}
-      />
-      <motion.div 
-        className="mt-4 p-4 border rounded bg-[#16213E] shadow-lg text-white"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+    <div className="border-2 border-blue-950 bg-slate-100 rounded-xl p-4 mx-auto mt-14 max-w-lg">
+      <h1 className="text-blue-950 text-3xl text-center font-bold mb-4">Word Counter & Text Analyzer</h1>
+      <textarea rows="4" className="w-full text-blue-900 text-2xl border-2 border-blue-950 p-3 rounded-lg outline-none bg-slate-200 placeholder-gray-500 placeholder:text-xl hover:scale-105 duration-500 focus:ring-1 focus:ring-blue-950" placeholder="Enter Your Text Here" onChange={(e) => setText(e.target.value)}></textarea>
+      <div className="flex rounded-md bg-slate-200 mt-2">
+        <input type="file" id="upload" className="hidden" accept=".docx" onChange={handleFileUpload} />
+        <label htmlFor="upload" className="cursor-pointer border-2 border-blue-950  text-blue-950 py-2 px-4 rounded-md bg-slate-200 text-xl hover:bg-slate-300 hover:scale-105 duration-300" accept=".docx" onChange={handleFileUpload}>
+          <div className="flex"><ImCloudUpload className="pt-1 text-2xl pr-1" />Choose File</div>
+        </label>
+        {fileName && <p className="mt-2">{fileName}</p>}
+      </div>
+      <div className="bg-blue-950 mt-4 p-4 rounded-lg">
         <div className="flex justify-between">
-          <p className="text-lg text-yellow-500"><strong>WORDS:</strong> {countWords(text)}</p>
-          <p className="text-lg text-yellow-500"><strong>CHARACTERS:</strong> {countCharacters(text)}</p>
+          <p className="text-2xl text-blue-200 tracking-wider">Words : {countWords(text)}</p>
+          <p className="text-2xl text-blue-200 tracking-wider">Characters : {countCharacters(text)}</p>
         </div>
         <div className="flex justify-between mt-2">
-          <p className="text-lg text-green-500"><strong>VOWELS:</strong> {countVowels(text)}</p>
-          <p className="text-lg text-green-500"><strong>PUNCTUATION:</strong> {countPunctuation(text)}</p>
+          <p className="text-2xl text-blue-200 tracking-wider">Vowels : {countVowels(text)}</p>
+          <p className="text-2xl text-blue-200 tracking-wider">Punctuations : {countPunctuation(text)}</p>
         </div>
-        <p className="text-lg text-center text-blue-400 mt-2"><strong>SENTENCES:</strong> {countSentences(text)}</p>
-      </motion.div>
-    </motion.div>
+        <p className="text-2xl text-blue-200 text-center tracking-wider mt-2">Sentences : {countSentences(text)}
+        </p>
+      </div>
+    </div>
   );
 };
 
