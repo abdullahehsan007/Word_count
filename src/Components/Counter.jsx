@@ -4,7 +4,7 @@ import Mammoth from "mammoth";
 
 const Counter = () => {
   const [text, setText] = useState('');
-  const [fileName] = useState('');
+  const [fileName, setFileName] = useState('');
   const countWords = (str) => (str.trim() ? str.trim().split(/\s+/).length : 0);
   const countCharacters = (str) => str.length;
   const countPunctuation = (str) => (str.match(/[.,!?;:'"()-]/g) || []).length;
@@ -14,6 +14,7 @@ const Counter = () => {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file && file.name.endsWith(".docx")) {
+      setFileName(file.name);  // Set the file name
       const reader = new FileReader();
       reader.onload = async (e) => {
         const arrayBuffer = e.target.result;
@@ -25,6 +26,7 @@ const Counter = () => {
       alert("Please upload a valid .docx file");
     }
   };
+  
 
   return (
     <div className="border-2 border-blue-950 bg-slate-100 rounded-xl p-4 mx-auto mt-14 max-w-lg">
@@ -35,7 +37,8 @@ const Counter = () => {
         <label htmlFor="upload" className="cursor-pointer border-2 border-blue-950  text-blue-950 py-2 px-4 rounded-md bg-slate-200 text-xl hover:bg-slate-300 hover:scale-105 duration-300" accept=".docx" onChange={handleFileUpload}>
           <div className="flex"><ImCloudUpload className="pt-1 text-2xl pr-1" />Choose File</div>
         </label>
-        {fileName && <p className="mt-2">{fileName}</p>}
+        {fileName && <p className="mt-2 text-blue-950">{fileName}</p>}
+        {/* {fileName && <p className="mt-2">{fileName}</p>} */}
       </div>
       <div className="bg-blue-950 mt-4 p-4 rounded-lg">
         <div className="flex justify-between">
